@@ -2,14 +2,20 @@
 
 namespace Tests\Feature;
 
+use App\Concert;
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ViewConcertListingTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function user_can_view_a_concert_listing()
     {
+        $this->withoutExceptionHandling();
+        
         $concert = Concert::create([
             'title' => 'The Red Chord',
             'subtitle' => 'with Animosity and Lethargy',
