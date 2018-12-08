@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b88c85a6-0675-48d0-a846-555537686000" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Concert.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Concert.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/concerts/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/concerts/show.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,37 +19,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConcertController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+            <state relative-caret-position="182">
+              <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -59,17 +30,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/concerts/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+            <state relative-caret-position="88">
+              <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/Unit/ConcertTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="499">
+              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+              <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-117" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/factories/ConcertFactory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Concert.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+            <state relative-caret-position="350">
+              <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -82,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/phpunit.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
+            <state relative-caret-position="704">
               <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
             </state>
           </provider>
@@ -91,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2018_12_07_104332_create_concerts_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
-              <caret line="26" column="51" lean-forward="true" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+            <state relative-caret-position="572">
+              <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -106,14 +113,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/tests/Feature/ExampleTest.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/phpunit.xml" />
         <option value="$PROJECT_DIR$/database/migrations/2018_12_07_104332_create_concerts_table.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ConcertController.php" />
-        <option value="$PROJECT_DIR$/resources/views/concerts/show.blade.php" />
+        <option value="$PROJECT_DIR$/database/factories/ConcertFactory.php" />
         <option value="$PROJECT_DIR$/app/Concert.php" />
+        <option value="$PROJECT_DIR$/resources/views/concerts/show.blade.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/tests/Unit/ConcertTest.php" />
       </list>
     </option>
   </component>
@@ -220,7 +229,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,7 +239,18 @@
             <path>
               <item name="ticketbeast" type="b2602c69:ProjectViewProjectNode" />
               <item name="ticketbeast" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketbeast" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketbeast" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ticketbeast" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketbeast" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="factories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ticketbeast" type="b2602c69:ProjectViewProjectNode" />
@@ -261,10 +280,17 @@
               <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="Feature" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ticketbeast" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ticketbeast" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Unit" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,9 +311,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHPUnit.ViewConcertListingTest.user_can_view_a_concert_listing">
-    <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ViewConcertListingTest" file="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" method="user_can_view_a_concert_listing" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.ConcertTest.can_get_tickets_price_in_dollars">
+    <configuration name="ConcertTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ConcertTest.can_get_formatted_date" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="can_get_formatted_date" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ConcertTest.can_get_formatted_time" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="can_get_formatted_time" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ConcertTest.can_get_tickets_price_in_dollars" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Unit\ConcertTest" file="$PROJECT_DIR$/tests/Unit/ConcertTest.php" method="can_get_tickets_price_in_dollars" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ViewConcertListingTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ViewConcertListingTest" file="$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php" scope="Class" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -296,7 +338,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.ViewConcertListingTest.user_can_view_a_concert_listing" />
+        <item itemvalue="PHPUnit.ConcertTest.can_get_tickets_price_in_dollars" />
+        <item itemvalue="PHPUnit.ConcertTest.can_get_formatted_time" />
+        <item itemvalue="PHPUnit.ConcertTest.can_get_formatted_date" />
+        <item itemvalue="PHPUnit.ConcertTest" />
+        <item itemvalue="PHPUnit.ViewConcertListingTest" />
       </list>
     </recent_temporary>
   </component>
@@ -312,56 +358,58 @@
       <updated>1544145035640</updated>
       <workItem from="1544145039236" duration="87000" />
       <workItem from="1544160677332" duration="1417000" />
-      <workItem from="1544177418796" duration="2540000" />
+      <workItem from="1544177418796" duration="3163000" />
+      <workItem from="1544231810702" duration="169000" />
+      <workItem from="1544242145467" duration="2310000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 04m 32s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_formatted_date - 2018.12.08 at 15h 29m 08s.xml">
+      <configuration name="ConcertTest.can_get_formatted_date" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 05m 18s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_formatted_date - 2018.12.08 at 15h 31m 01s.xml">
+      <configuration name="ConcertTest.can_get_formatted_date" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 06m 06s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_formatted_time - 2018.12.08 at 15h 34m 20s.xml">
+      <configuration name="ConcertTest.can_get_formatted_time" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 06m 56s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_formatted_time - 2018.12.08 at 15h 35m 24s.xml">
+      <configuration name="ConcertTest.can_get_formatted_time" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 07m 40s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_formatted_time - 2018.12.08 at 15h 36m 00s.xml">
+      <configuration name="ConcertTest.can_get_formatted_time" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 07m 52s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_tickets_price_in_dollars - 2018.12.08 at 15h 39m 15s.xml">
+      <configuration name="ConcertTest.can_get_tickets_price_in_dollars" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 08m 24s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_tickets_price_in_dollars - 2018.12.08 at 15h 41m 15s.xml">
+      <configuration name="ConcertTest.can_get_tickets_price_in_dollars" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 09m 12s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_tickets_price_in_dollars - 2018.12.08 at 15h 43m 08s.xml">
+      <configuration name="ConcertTest.can_get_tickets_price_in_dollars" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 10m 14s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_tickets_price_in_dollars - 2018.12.08 at 15h 43m 47s.xml">
+      <configuration name="ConcertTest.can_get_tickets_price_in_dollars" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="ViewConcertListingTest_user_can_view_a_concert_listing - 2018.12.07 at 22h 10m 48s.xml">
-      <configuration name="ViewConcertListingTest.user_can_view_a_concert_listing" configurationId="PHPUnitRunConfigurationType" />
+    <history-entry file="ConcertTest_can_get_tickets_price_in_dollars - 2018.12.08 at 15h 44m 44s.xml">
+      <configuration name="ConcertTest.can_get_tickets_price_in_dollars" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4044000" />
+    <option name="totallyTimeSpent" value="7146000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32902467" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32902467" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -381,44 +429,13 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpunit.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2018_12_07_104332_create_concerts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="26" column="51" lean-forward="true" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -436,17 +453,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/concerts/show.blade.php">
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpunit.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+        <state relative-caret-position="704">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_12_07_104332_create_concerts_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ViewConcertListingTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-117" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Concert.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        <state relative-caret-position="350">
+          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/ConcertFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/concerts/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Unit/ConcertTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+          <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
         </state>
       </provider>
     </entry>
