@@ -47,6 +47,8 @@ class PurchaseTicketsTest extends TestCase
     /** @test */
     public function cannot_purchase_more_tickets_than_remain()
     {
+        $this->withoutExceptionHandling();
+
         $concert = factory(Concert::class)->states('published')->create();
         $concert->addTickets(50);
 
