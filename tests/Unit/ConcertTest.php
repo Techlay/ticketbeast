@@ -105,7 +105,7 @@ class ConcertTest extends TestCase
             return;
         }
 
-        $this->fail('Order succeeded even though there were not enough tickets remaining');
+        $this->fail('Order succeeded even though there were not enough tickets remaining.');
     }
 
     /** @test */
