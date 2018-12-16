@@ -72,17 +72,24 @@ class PurchaseTicketsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $concert = factory(Concert::class)->states('published')->create()->addTickets(3);
+        $concert = factory(Concert::class)->states('published')->create([
+            'ticket_price' => 1200
+        ])->addTickets(3);
 
         $this->paymentGateway->beforeFirstCharge(function ($paymentGateway) use ($concert) {
+
+            $requestA = $this->app['request'];
+
             $response = $this->orderTickets($concert, [
                 'email' => 'personB@example.com',
                 'ticket_quantity' => 1,
                 'payment_token' => $this->paymentGateway->getValidTestToken(),
             ]);
 
+            $this->app['request'] = $requestA;
+
             $response->assertStatus(422);
-            $this->assertFalse($concert->hasOrderFor('personB@example.com'));
+            $this->assertFalse(($concert->hasOrderFor('personB@exampl.com')));
             $this->assertEquals(0, $this->paymentGateway->totalCharges());
         });
 
