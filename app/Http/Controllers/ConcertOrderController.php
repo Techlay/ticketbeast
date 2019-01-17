@@ -16,6 +16,7 @@ class ConcertOrderController extends Controller
 
     /**
      * ConcertOrderController constructor.
+     *
      * @param $paymentGateway
      */
     public function __construct(PaymentGateway $paymentGateway)
