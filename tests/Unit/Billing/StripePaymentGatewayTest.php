@@ -3,13 +3,13 @@
 namespace Tests\Unit\Billing;
 
 use App\Billing\StripePaymentGateway;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Stripe\Charge;
-use Stripe\Stripe;
 use Stripe\Token;
 use Tests\TestCase;
 
+/**
+ * @group integration
+ */
 class StripePaymentGatewayTest extends TestCase
 {
     protected function setUp()

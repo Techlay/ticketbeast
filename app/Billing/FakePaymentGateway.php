@@ -22,7 +22,7 @@ class FakePaymentGateway implements PaymentGateway
         return 'valid-token';
     }
 
-    public function charge(int $amount, string $token)
+    public function charge($amount, $token)
     {
         if ($this->beforeFirstChargeCallback !== null) {
             $callback = $this->beforeFirstChargeCallback;
