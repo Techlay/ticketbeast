@@ -79,7 +79,7 @@
                 this.stripeHandler.open({
                     name: 'TicketBeast',
                     description: this.description,
-                    currency: "usd",
+                    currency: "aud",
                     allowRememberMe: false,
                     panelLabel: 'Pay {{amount}}',
                     amount: this.totalPrice,

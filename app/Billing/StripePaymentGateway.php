@@ -23,7 +23,7 @@ class StripePaymentGateway implements PaymentGateway
                 'currency' => 'aud'
             ], ['api_key' => $this->apiKey]);
         } catch (InvalidRequest $e) {
-            throw new PaymentFailedException;
+            return false;
         }
     }
 }
