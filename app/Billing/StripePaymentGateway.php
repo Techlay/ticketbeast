@@ -21,10 +21,10 @@ class StripePaymentGateway implements PaymentGateway
             Charge::create([
                 'amount' => $amount,
                 'source' => $token,
-                'currency' => 'aud'
+                'currency' => 'aud',
             ], ['api_key' => $this->apiKey]);
         } catch (InvalidRequest $e) {
-            return new PaymentFailedException;
+            throw new PaymentFailedException;
         }
     }
 
@@ -38,5 +38,32 @@ class StripePaymentGateway implements PaymentGateway
                 'cvc' => '123'
             ]
         ], ['api_key' => $this->apiKey])->id;
+    }
+
+    public function newChargesDuring($callback)
+    {
+        $lastCharge = $this->lastCharge();
+        $callback($this);
+        return $this->newChargesSince($lastCharge)->pluck('amount');
+    }
+
+    private function lastCharge()
+    {
+        return array_first(Charge::all(
+            ['limit' => 1],
+            ['api_key' => $this->apiKey]
+        )['data']);
+    }
+
+    private function newChargesSince($charge = null)
+    {
+        $newCharges = Charge::all(
+            [
+                'ending_before' => $charge ? $charge->id : null,
+            ],
+            ['api_key' => $this->apiKey]
+        )['data'];
+
+        return collect($newCharges);
     }
 }
