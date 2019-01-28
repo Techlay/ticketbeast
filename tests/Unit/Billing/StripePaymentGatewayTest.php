@@ -4,6 +4,7 @@ namespace Tests\Unit\Billing;
 
 use App\Billing\PaymentFailedException;
 use App\Billing\StripePaymentGateway;
+use PaymentGatewayContractTests;
 use Stripe\Charge;
 use Stripe\Token;
 use Tests\TestCase;
@@ -13,6 +14,8 @@ use Tests\TestCase;
  */
 class StripePaymentGatewayTest extends TestCase
 {
+    use PaymentGatewayContractTests;
+
     protected function setUp()
     {
         parent::setUp();
@@ -53,19 +56,6 @@ class StripePaymentGatewayTest extends TestCase
     protected function getPaymentGateway()
     {
         return new StripePaymentGateway(config('services.stripe.secret'));
-    }
-
-    /** @test */
-    public function charges_with_a_valid_payment_token_are_successful()
-    {
-        $paymentGateway = $this->getPaymentGateway();
-
-        $newCharges = $paymentGateway->newChargesDuring(function ($paymentGateway) {
-            $paymentGateway->charge(2500, $paymentGateway->getValidTestToken());
-        });
-
-        $this->assertCount(1, $newCharges);
-        $this->assertEquals(2500, $newCharges->sum());
     }
 
     /** @test */

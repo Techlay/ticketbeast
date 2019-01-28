@@ -9,9 +9,6 @@ class FakePaymentGateway implements PaymentGateway
     private $charges;
     private $beforeFirstChargeCallback;
 
-    /**
-     * FakePaymentGateway constructor.
-     */
     public function __construct()
     {
         $this->charges = collect();
@@ -40,7 +37,7 @@ class FakePaymentGateway implements PaymentGateway
     {
         $chargesForm = $this->charges->count();
         $callback($this);
-        return $this->charges->slice($chargesForm)->values();
+        return $this->charges->slice($chargesForm)->reverse()->values();
     }
 
     public function totalCharges() : int
