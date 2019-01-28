@@ -36,6 +36,13 @@ class FakePaymentGateway implements PaymentGateway
         $this->charges[] = $amount;
     }
 
+    public function newChargesDuring($callback)
+    {
+        $chargesForm = $this->charges->count();
+        $callback($this);
+        return $this->charges->slice($chargesForm)->values();
+    }
+
     public function totalCharges() : int
     {
         return $this->charges->sum();
