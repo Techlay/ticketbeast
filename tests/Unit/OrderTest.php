@@ -4,10 +4,7 @@ namespace Tests\Unit;
 
 use App\Concert;
 use App\Order;
-use App\Reservation;
-use App\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
@@ -26,6 +23,18 @@ class OrderTest extends TestCase
         $this->assertEquals(3, $order->ticketQuantity());
         $this->assertEquals(3600, $order->amount);
         $this->assertEquals(2, $concert->ticketsRemaining());
+    }
+
+    /** @test */
+    public function retrieving_an_order_by_confirmation_number()
+    {
+        $order = factory(Order::class)->create([
+            'confirmation_number' => 'ORDERCONFIRMATION1234'
+        ]);
+
+        $foundOrder = Order::findByConfirmationNumber('ORDERCONFIRMATION1234');
+
+        $this->assertEquals($order->id, $foundOrder->id);
     }
 
     /** @test */
