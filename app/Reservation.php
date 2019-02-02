@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Order;
-
 class Reservation
 {
     private $tickets;
