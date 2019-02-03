@@ -1,8 +1,6 @@
 <?php
 
-
-namespace App;
-
+namespace App\Billing;
 
 class Charge
 {
