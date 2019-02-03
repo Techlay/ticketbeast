@@ -7,7 +7,6 @@ use App\Concert;
 use App\Reservation;
 use App\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Mockery;
 use Tests\TestCase;
 
@@ -19,9 +18,9 @@ class ReservationTest extends TestCase
     public function calculating_the_total_cost()
     {
         $tickets = collect([
-            (object) ['price' => 1200],
-            (object) ['price' => 1200],
-            (object) ['price' => 1200],
+            (object)['price' => 1200],
+            (object)['price' => 1200],
+            (object)['price' => 1200],
         ]);
 
         $reservation = new Reservation($tickets, 'john@example.com');
@@ -33,9 +32,9 @@ class ReservationTest extends TestCase
     public function retrieving_the_reservations_tickets()
     {
         $tickets = collect([
-            (object) ['price' => 1200],
-            (object) ['price' => 1200],
-            (object) ['price' => 1200],
+            (object)['price' => 1200],
+            (object)['price' => 1200],
+            (object)['price' => 1200],
         ]);
 
         $reservation = new Reservation($tickets, 'john@example.com');
