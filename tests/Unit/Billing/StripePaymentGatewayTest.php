@@ -3,7 +3,6 @@
 namespace Tests\Unit\Billing;
 
 use App\Billing\StripePaymentGateway;
-use PaymentGatewayContractTests;
 use Tests\TestCase;
 
 /**

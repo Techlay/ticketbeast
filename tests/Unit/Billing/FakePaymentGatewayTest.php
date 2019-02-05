@@ -3,7 +3,6 @@
 namespace Tests\Unit\Billing;
 
 use App\Billing\FakePaymentGateway;
-use PaymentGatewayContractTests;
 use Tests\TestCase;
 
 class FakePaymentGatewayTest extends TestCase
