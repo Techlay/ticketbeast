@@ -5,7 +5,6 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class OrderConfirmationEmail extends Mailable
 {
@@ -25,6 +24,7 @@ class OrderConfirmationEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.order-confirmation-email')
+            ->subject("Your TicketBeast Order");
     }
 }
