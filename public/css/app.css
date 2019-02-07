@@ -4667,6 +4667,9 @@ select.form-control {
 .text-brand-muted {
   color: #4da7db;
 }
+.text-danger {
+  color: #d95550;
+}
 .text-em {
   font-style: italic;
 }
