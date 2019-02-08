@@ -12,6 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        factory(App\User::class)->create([
+            'email' => "adam@example.com",
+            'password' => bcrypt('secret'),
+        ]);
+
         factory(App\Concert::class)->state('published')->create([
             'title' => 'The Red Chord',
             'subtitle' => 'with Animosity and Lethargy',

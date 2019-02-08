@@ -24,7 +24,7 @@ class PromoterLoginTest extends DuskTestCase
                 ->type('email', 'jane@example.com')
                 ->type('password', 'super-secret-password')
                 ->press('Log in')
-                ->assertPathIs('/backstage/concerts');
+                ->assertPathIs('/backstage/concerts/new');
         });
     }
 
@@ -42,6 +42,7 @@ class PromoterLoginTest extends DuskTestCase
                 ->type('password', 'wrong-password')
                 ->press('Log in')
                 ->assertPathIs('/login')
+                ->assertInputValue('email', 'jane@example.com')
                 ->assertSee('credentials do not match');
         });
     }
