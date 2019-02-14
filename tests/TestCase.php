@@ -17,4 +17,10 @@ abstract class TestCase extends BaseTestCase
             return $this->original->getData()[$key];
         });
     }
+
+    public function from($url)
+    {
+        session()->setPreviousUrl(url($url));
+        return $this;
+    }
 }

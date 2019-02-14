@@ -68,7 +68,13 @@ class ConcertController extends Controller
 
     public function update($id)
     {
+        $this->validate(request(), [
+            'title' => 'required',
+        ]);
+
         $concert = Auth::user()->concerts()->findOrFail($id);
+
+        abort_if($concert->isPublished(), 403);
 
         $concert->update([
             'title' => request('title'),
