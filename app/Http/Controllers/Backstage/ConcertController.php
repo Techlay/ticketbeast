@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backstage;
 
-use App\Concert;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -70,6 +69,15 @@ class ConcertController extends Controller
     {
         $this->validate(request(), [
             'title' => 'required',
+            'date' => 'required|date',
+            'time' => 'required|date_format:g:ia',
+            'venue' => 'required',
+            'venue_address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+            'ticket_price' => 'required|numeric|min:5',
+            'ticket_quantity' => 'required|integer|min:1'
         ]);
 
         $concert = Auth::user()->concerts()->findOrFail($id);
@@ -90,6 +98,7 @@ class ConcertController extends Controller
             'state' => request('state'),
             'zip' => request('zip'),
             'ticket_price' => request('ticket_price') * 100,
+            'ticket_quantity' => (int)request('ticket_quantity'),
         ]);
 
         return redirect()->route('backstage.concerts.index');
