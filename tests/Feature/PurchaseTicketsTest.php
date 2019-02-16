@@ -29,7 +29,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function customer_can_purchase_tickets_to_a_published_concert()
+    function customer_can_purchase_tickets_to_a_published_concert()
     {
         $this->withoutExceptionHandling();
 
@@ -38,7 +38,11 @@ class PurchaseTicketsTest extends TestCase
         OrderConfirmationNumber::shouldReceive('generate')->andReturn('ORDERCONFIRMATION1234');
         TicketCode::shouldReceive('generateFor')->andReturn('TICKETCODE1', 'TICKETCODE2', 'TICKETCODE3');
 
-        $concert = factory(Concert::class)->states('published')->create(['ticket_price' => 3250])->addTickets(3);
+        $concert = factory(Concert::class)->states('published')->create([
+            'ticket_price' => 3250,
+            'ticket_quantity' => 3,
+        ]);
+        $concert->publish();
 
         $response = $this->orderTickets($concert, [
             'email' => 'john@example.com',
@@ -72,7 +76,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function cannot_purchase_more_tickets_than_remain()
+    function cannot_purchase_more_tickets_than_remain()
     {
         $concert = factory(Concert::class)->states('published')->create()->addTickets(50);
 
@@ -89,7 +93,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function cannot_purchase_tickets_another_customer_is_already_trying_to_purchase()
+    function cannot_purchase_tickets_another_customer_is_already_trying_to_purchase()
     {
         $this->withoutExceptionHandling();
 
@@ -126,7 +130,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function cannot_purchase_tickets_to_an_unpublished_concert()
+    function cannot_purchase_tickets_to_an_unpublished_concert()
     {
         $concert = factory(Concert::class)->states('unpublished')->create()->addTickets(3);
 
@@ -142,7 +146,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function an_order_is_not_created_if_payment_fails()
+    function an_order_is_not_created_if_payment_fails()
     {
         $concert = factory(Concert::class)->states('published')->create(['ticket_price' => 3250])->addTickets(3);
 
@@ -158,7 +162,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function email_is_required_to_purchase_tickets()
+    function email_is_required_to_purchase_tickets()
     {
         $concert = factory(Concert::class)->states('published')->create();
 
@@ -172,7 +176,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function email_must_be_valid_to_purchase_tickets()
+    function email_must_be_valid_to_purchase_tickets()
     {
         $concert = factory(Concert::class)->states('published')->create();
 
@@ -187,7 +191,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function ticket_quantity_is_required_to_purchase_tickets()
+    function ticket_quantity_is_required_to_purchase_tickets()
     {
         $concert = factory(Concert::class)->states('published')->create();
 
@@ -201,7 +205,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function ticket_quantity_must_be_at_least_1_to_purchase_tickets()
+    function ticket_quantity_must_be_at_least_1_to_purchase_tickets()
     {
         $concert = factory(Concert::class)->states('published')->create();
 
@@ -216,7 +220,7 @@ class PurchaseTicketsTest extends TestCase
     }
 
     /** @test */
-    public function payment_token_is_required()
+    function payment_token_is_required()
     {
         $concert = factory(Concert::class)->states('published')->create();
 
