@@ -1,6 +1,24 @@
-@extends('layouts.backstage')
+@extends('layouts.master')
 
-@section('backstageContent')
+@section('body')
+    <header>
+        <nav class="navbar p-xs-y-3">
+            <div class="container">
+                <div class="navbar-content">
+                    <div>
+                        <img src="/img/logo.svg" alt="TicketBeast" style="height: 2.5rem;">
+                    </div>
+                    <div>
+                        <form class="inline-block" action="{{ route('auth.logout') }}" method="POST">
+                            {{ csrf_field() }}
+                            <button type="submit" class="link link-light">Log out</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <div class="bg-light p-xs-y-4 border-b">
         <div class="container">
             <div class="flex-spaced flex-y-center">
@@ -14,7 +32,7 @@
             <div class="m-xs-b-6">
                 <h2 class="m-xs-b-3 text-base wt-medium text-dark-soft">Published</h2>
                 <div class="row">
-                    @foreach ($publishedConcerts as $concert)
+                    @foreach ($concerts->filter->isPublished() as $concert)
                         <div class="col-xs-12 col-lg-4">
                             <div class="card m-xs-b-4">
                                 <div class="card-section">
@@ -33,10 +51,8 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <a href="{{ route('backstage.published-concert-orders.index', $concert) }}"
-                                           class="btn btn-sm btn-secondary m-xs-r-2">Manage</a>
                                         <a href="{{ route('concerts.show', $concert) }}"
-                                           class="link-brand text-sm wt-medium">Public Link</a>
+                                           class="btn btn-sm btn-secondary">Get Ticket Link</a>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +63,7 @@
             <div>
                 <h2 class="m-xs-b-3 text-base wt-medium text-dark-soft">Drafts</h2>
                 <div class="row">
-                    @foreach ($unpublishedConcerts as $concert)
+                    @foreach ($concerts->reject->isPublished() as $concert)
                         <div class="col-xs-12 col-lg-4">
                             <div class="card m-xs-b-4">
                                 <div class="card-section">
@@ -83,4 +99,11 @@
             </div>
         </div>
     </div>
+
+
+    <footer class="p-xs-y-6 text-light-muted">
+        <div class="container">
+            <p class="text-center">&copy; TicketBeast {{ date('Y') }}</p>
+        </div>
+    </footer>
 @endsection
