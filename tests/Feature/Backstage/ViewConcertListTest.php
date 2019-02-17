@@ -29,7 +29,7 @@ class ViewConcertListTest extends TestCase
     }
 
     /** @test */
-    public function guests_cannot_view_a_promoter_concerts_list()
+    function guests_cannot_view_a_promoter_concerts_list()
     {
         $response = $this->get('/backstage/concerts');
 
@@ -38,7 +38,7 @@ class ViewConcertListTest extends TestCase
     }
 
     /** @test */
-    public function promoters_can_view_a_list_of_their_concerts()
+    function promoters_can_view_a_list_of_their_concerts()
     {
         $this->withoutExceptionHandling();
 
@@ -54,23 +54,39 @@ class ViewConcertListTest extends TestCase
     }
 
     /** @test */
-    public function promoters_can_only_view_a_list_of_their_own_concert()
+    function promoters_can_only_view_a_list_of_their_own_concert()
     {
         $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
         $otherUser = factory(User::class)->create();
-        $concertA = factory(Concert::class)->create(['user_id' => $user->id]);
-        $concertB = factory(Concert::class)->create(['user_id' => $user->id]);
-        $concertC = factory(Concert::class)->create(['user_id' => $otherUser->id]);
-        $concertD = factory(Concert::class)->create(['user_id' => $user->id]);
+        $publishedConcertA = factory(Concert::class)->create(['user_id' => $user->id]);
+        $publishedConcertA->publish();
+        $publishedConcertB = factory(Concert::class)->create(['user_id' => $otherUser->id]);
+        $publishedConcertB->publish();
+        $publishedConcertC = factory(Concert::class)->create(['user_id' => $user->id]);
+        $publishedConcertC->publish();
+
+        $unpublishedConcertA = factory(Concert::class)->states('unpublished')->create(['user_id' => $user->id]);
+        $unpublishedConcertB = factory(Concert::class)->states('unpublished')->create(['user_id' => $otherUser->id]);
+        $unpublishedConcertC = factory(Concert::class)->states('unpublished')->create(['user_id' => $user->id]);
 
         $response = $this->actingAs($user)->get('/backstage/concerts');
 
         $response->assertStatus(200);
-        $response->data('concerts')->assertContains($concertA);
-        $response->data('concerts')->assertContains($concertB);
-        $response->data('concerts')->assertContains($concertD);
-        $response->data('concerts')->assertNotContains($concertC);
+
+        $response->data('publishedConcerts')->assertContains($publishedConcertA);
+        $response->data('publishedConcerts')->assertNotContains($publishedConcertB);
+        $response->data('publishedConcerts')->assertContains($publishedConcertC);
+        $response->data('publishedConcerts')->assertNotContains($unpublishedConcertA);
+        $response->data('publishedConcerts')->assertNotContains($unpublishedConcertB);
+        $response->data('publishedConcerts')->assertNotContains($unpublishedConcertC);
+
+        $response->data('unpublishedConcerts')->assertNotContains($publishedConcertA);
+        $response->data('unpublishedConcerts')->assertNotContains($publishedConcertB);
+        $response->data('unpublishedConcerts')->assertNotContains($publishedConcertC);
+        $response->data('unpublishedConcerts')->assertContains($unpublishedConcertA);
+        $response->data('unpublishedConcerts')->assertNotContains($unpublishedConcertB);
+        $response->data('unpublishedConcerts')->assertContains($unpublishedConcertC);
     }
 }
