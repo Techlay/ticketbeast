@@ -1,0 +1,52 @@
+<?php
+
+namespace Tests\Feature\Backstage;
+
+use App\Concert;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class MessageAttendeesTest extends TestCase
+{
+    use RefreshDatabase;
+
+    /** @test */
+    function a_promoter_can_view_the_message_form_for_their_own_concert()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $concert = factory(Concert::class)->create(['user_id' => $user->id]);
+        $concert->publish();
+
+        $response = $this->actingAs($user)->get("/backstage/concerts/{$concert->id}/messages/new");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('backstage.concert-messages.new');
+        $this->assertTrue($response->data('concert')->is($concert));
+    }
+
+    /** @test */
+    function a_promoter_cannot_view_the_message_form_for_another_concert()
+    {
+        $user = factory(User::class)->create();
+        $concert = factory(Concert::class)->create(['user_id' => factory(User::class)->create()]);
+        $concert->publish();
+
+        $response = $this->actingAs($user)->get("/backstage/concerts/{$concert->id}/messages/new");
+
+        $response->assertStatus(404);
+    }
+
+    /** @test */
+    function a_guest_cannot_view_the_message_form_for_any_concert()
+    {
+        $concert = factory(Concert::class)->create();
+        $concert->publish();
+
+        $response = $this->get("/backstage/concerts/{$concert->id}/messages/new");
+
+        $response->assertRedirect('/login');
+    }
+}

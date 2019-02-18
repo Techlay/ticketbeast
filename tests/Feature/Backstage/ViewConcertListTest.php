@@ -26,22 +26,6 @@ class ViewConcertListTest extends TestCase
         $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
-        $concerts = factory(Concert::class, 3)->create(['user_id' => $user->id]);
-
-        $response = $this->actingAs($user)->get('/backstage/concerts');
-
-        $response->assertStatus(200);
-        $this->assertTrue($response->original->getData()['concerts']->contains($concerts[0]));
-        $this->assertTrue($response->original->getData()['concerts']->contains($concerts[1]));
-        $this->assertTrue($response->original->getData()['concerts']->contains($concerts[2]));
-    }
-
-    /** @test */
-    function promoters_can_only_view_a_list_of_their_own_concert()
-    {
-        $this->withoutExceptionHandling();
-
-        $user = factory(User::class)->create();
         $otherUser = factory(User::class)->create();
         $publishedConcertA = factory(Concert::class)->create(['user_id' => $user->id]);
         $publishedConcertA->publish();

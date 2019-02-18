@@ -12,9 +12,11 @@
                 </span>
                 </h1>
                 <div class="text-base">
-                    <a href="{{ route('backstage.published-concert-orders.index', $concert) }}"
-                       class="wt-bold inline-block">
+                    <a href="{{ route('backstage.published-concert-orders.index', $concert) }}" class="wt-bold inline-block m-xs-r-4">
                         Orders
+                    </a>
+                    <a href="{{ route('backstage.concert-messages.new', $concert) }}" class="inline-block">
+                        Message Attendees
                     </a>
                 </div>
             </div>
@@ -27,9 +29,7 @@
                 <div class="card">
                     <div class="card-section border-b">
                         <p class="m-xs-b-4">This show is {{ $concert->percentSoldOut() }}% sold out.</p>
-                        <progress class="progress" value="{{ $concert->ticketsSold() }}"
-                                  max="{{ $concert->totalTickets() }}">{{ $concert->percentSoldOut() }}%
-                        </progress>
+                        <progress class="progress" value="{{ $concert->ticketsSold() }}" max="{{ $concert->totalTickets() }}">{{ $concert->percentSoldOut() }}%</progress>
                     </div>
                     <div class="row">
                         <div class="col col-md-4 border-md-r">
@@ -63,28 +63,34 @@
                 <h2 class="m-xs-b-2 text-lg">Recent Orders</h2>
                 <div class="card">
                     <div class="card-section">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th class="text-left">Email</th>
-                                <th class="text-left">Tickets</th>
-                                <th class="text-left">Amount</th>
-                                <th class="text-left">Card</th>
-                                <th class="text-left">Purchased</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach(range(1, 10) as $i)
+                        @if($orders->isEmpty())
+                            <div class="text-center">
+                                No orders yet.
+                            </div>
+                        @else
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <td>{{ collect(['john', 'jane', 'dave', 'donna'])->random() }}@example.com</td>
-                                    <td>{{ rand(1, 4) }}</td>
-                                    <td>${{ number_format(rand(5000, 15000) / 100, 2) }}</td>
-                                    <td><span class="text-dark-soft">****</span> 4242</td>
-                                    <td class="text-dark-soft">July 18, 2017 @ 12:37pm</td>
+                                    <th class="text-left">Email</th>
+                                    <th class="text-left">Tickets</th>
+                                    <th class="text-left">Amount</th>
+                                    <th class="text-left">Card</th>
+                                    <th class="text-left">Purchased</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->email }}</td>
+                                        <td>{{ $order->ticketQuantity() }}</td>
+                                        <td>${{ number_format($order->amount / 100, 2) }}</td>
+                                        <td><span class="text-dark-soft">****</span> {{ $order->card_last_four}}</td>
+                                        <td class="text-dark-soft">{{ $order->created_at->format('M j, Y @ g:ia') }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
                 </div>
             </div>
