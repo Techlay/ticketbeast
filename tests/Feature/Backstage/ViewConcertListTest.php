@@ -4,38 +4,12 @@ namespace Tests\Feature\Backstage;
 
 use App\Concert;
 use App\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use PHPUnit\Framework\Assert;
 use Tests\TestCase;
 
 class ViewConcertListTest extends TestCase
 {
     use RefreshDatabase;
-
-    protected function setUp()
-    {
-        parent::setUp();
-
-        Collection::macro('assertContains', function ($value) {
-            Assert::assertTrue($this->contains($value),
-                'Failed asserting that the collection contained the specified value.');
-        });
-
-        Collection::macro('assertNotContains', function ($value) {
-            Assert::assertFalse($this->contains($value),
-                'Failed asserting that the collection did not contained the specified value.');
-        });
-
-        Collection::macro('assertEquals', function ($items) {
-            Assert::assertEquals(count($this), count($items));
-
-            $this->zip($items)->each(function ($pair) {
-                list($a, $b) = $pair;
-                Assert::assertTrue($a->is($b));
-            });
-        });
-    }
 
     /** @test */
     function guests_cannot_view_a_promoter_concerts_list()
