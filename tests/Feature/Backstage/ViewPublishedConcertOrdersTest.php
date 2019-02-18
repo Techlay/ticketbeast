@@ -4,9 +4,8 @@ namespace Tests\Feature\Backstage;
 
 use App\Concert;
 use App\User;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ViewPublishedConcertOrdersTest extends TestCase
 {
