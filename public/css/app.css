@@ -2190,6 +2190,24 @@ select.form-control {
 .numbered-list > li:last-child {
   margin-bottom: 0;
 }
+.table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+.table td,
+.table th {
+  text-align: left;
+  padding: 0.5rem;
+  white-space: nowrap;
+}
+.table th {
+  font-weight: 600 !important;
+  border-bottom: 2px solid #e8eaeb;
+}
+.table td {
+  border-top: 1px solid #e8eaeb;
+}
 [v-cloak] .v-cloak-block {
   display: block;
 }
@@ -4636,8 +4654,16 @@ select.form-control {
 .border-r {
   border-right: 1px solid #e8eaeb;
 }
+.border-b-2 {
+  border-bottom: 2px solid #e8eaeb;
+}
 .border-rounded {
   border-radius: 0.25rem;
+}
+@media (min-width: 768px) {
+  .border-md-r {
+    border-right: 1px solid #e8eaeb;
+  }
 }
 .text-xjumbo {
   font-size: 2.5rem !important;
@@ -4739,6 +4765,11 @@ select.form-control {
 }
 .text-break {
   white-space: pre-line;
+}
+@media (min-width: 768px) {
+  .text-md-left {
+    text-align: left;
+  }
 }
 .box-shadow {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
