@@ -3,13 +3,24 @@
 namespace Tests\Feature\Backstage;
 
 use App\Concert;
+use App\Order;
+use App\Ticket;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ViewPublishedConcertOrdersTest extends TestCase
 {
     use RefreshDatabase;
+
+    private function createForConcert($concert, $overrides = [], $ticketQuantity = 1)
+    {
+        $order = factory(Order::class)->create($overrides);
+        $tickets = factory(Ticket::class, $ticketQuantity)->create(['concert_id' => $concert->id]);
+        $order->tickets()->saveMany($tickets);
+        return $order;
+    }
 
     /** @test */
     function a_promoter_can_view_the_orders_of_their_own_published_concert()
@@ -19,6 +30,8 @@ class ViewPublishedConcertOrdersTest extends TestCase
         $user = factory(User::class)->create();
         $concert = factory(Concert::class)->create(['user_id' => $user->id]);
         $concert->publish();
+        $order = $this->createForConcert($concert, ['created_at' => Carbon::parse('11 days ago')]);
+        dd($order);
 
         $response = $this->actingAs($user)->get("/backstage/published-concerts/{$concert->id}/orders");
 
