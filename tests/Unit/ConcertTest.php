@@ -15,7 +15,7 @@ class ConcertTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function can_get_formatted_date()
+    function can_get_formatted_date()
     {
         $concert = factory(Concert::class)->make([
             'date' => Carbon::parse('2016-12-01 8:00pm')
@@ -26,7 +26,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function can_get_formatted_time()
+    function can_get_formatted_time()
     {
         $concert = factory(Concert::class)->make([
             'date' => Carbon::parse('2016-12-01 17:00:00')
@@ -36,7 +36,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function can_get_tickets_price_in_dollars()
+    function can_get_tickets_price_in_dollars()
     {
         $concert = factory(Concert::class)->make([
             'ticket_price' => 6750
@@ -46,7 +46,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function concert_with_a_published_at_date_are_published()
+    function concert_with_a_published_at_date_are_published()
     {
         $publishedConcertA = factory(Concert::class)->create(['published_at' => Carbon::parse('-1 week')]);
         $publishedConcertB = factory(Concert::class)->create(['published_at' => Carbon::parse('-1 week')]);
@@ -60,7 +60,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function concerts_can_be_published()
+    function concerts_can_be_published()
     {
         $concert = factory(Concert::class)->create([
             'published_at' => null,
@@ -77,7 +77,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function can_add_tickets()
+    function can_add_tickets()
     {
         $concert = factory(Concert::class)->create();
 
@@ -87,7 +87,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function tickets_remaining_does_not_include_tickets_associated_with_an_order()
+    function tickets_remaining_does_not_include_tickets_associated_with_an_order()
     {
         $concert = factory(Concert::class)->create();
         $concert->tickets()->saveMany(factory(Ticket::class, 3)->create(['order_id' => 1]));
@@ -128,7 +128,19 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function trying_to_reserve_more_tickets_than_remain_throws_an_exception()
+    function calculating_the_revenue_in_dollars()
+    {
+        $concert = factory(Concert::class)->create();
+        $orderA = factory(Order::class)->create(['amount' => 3850]);
+        $orderB = factory(Order::class)->create(['amount' => 9625]);
+        $concert->tickets()->saveMany(factory(Ticket::class, 2)->create(['order_id' => $orderA->id]));
+        $concert->tickets()->saveMany(factory(Ticket::class, 5)->create(['order_id' => $orderB->id]));
+
+        $this->assertEquals(134.75, $concert->revenueInDollars());
+    }
+
+    /** @test */
+    function trying_to_reserve_more_tickets_than_remain_throws_an_exception()
     {
         $concert = factory(Concert::class)->create()->addTickets(10);
 
@@ -144,7 +156,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function can_reserve_available_tickets()
+    function can_reserve_available_tickets()
     {
         $concert = factory(Concert::class)->create()->addTickets(3);
         $this->assertEquals(3, $concert->ticketsRemaining());
@@ -157,7 +169,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function cannot_reserve_tickets_that_have_already_been_purchased()
+    function cannot_reserve_tickets_that_have_already_been_purchased()
     {
         $concert = factory(Concert::class)->create()->addTickets(3);
         $order = factory(Order::class)->create();
@@ -174,7 +186,7 @@ class ConcertTest extends TestCase
     }
 
     /** @test */
-    public function cannot_reserve_tickets_that_have_already_been_reserved()
+    function cannot_reserve_tickets_that_have_already_been_reserved()
     {
         $concert = factory(Concert::class)->create()->addTickets(3);
         $concert->reserveTickets(2, 'jane@example.com');
