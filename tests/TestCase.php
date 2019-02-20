@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\Order;
+use App\Ticket;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\TestResponse;
@@ -47,5 +49,13 @@ abstract class TestCase extends BaseTestCase
     {
         session()->setPreviousUrl(url($url));
         return $this;
+    }
+
+    public function createForConcert($concert, $overrides = [], $ticketQuantity = 1)
+    {
+        $order = factory(Order::class)->create($overrides);
+        $tickets = factory(Ticket::class, $ticketQuantity)->create(['concert_id' => $concert->id]);
+        $order->tickets()->saveMany($tickets);
+        return $order;
     }
 }
