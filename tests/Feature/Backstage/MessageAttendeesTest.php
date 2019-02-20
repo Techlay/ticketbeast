@@ -4,8 +4,10 @@ namespace Tests\Feature\Backstage;
 
 use App\AttendeeMessage;
 use App\Concert;
+use App\Jobs\SendAttendeeMessage;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class MessageAttendeesTest extends TestCase
@@ -56,6 +58,7 @@ class MessageAttendeesTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        Queue::fake();
         $user = factory(User::class)->create();
         $concert = factory(Concert::class)->create(['user_id' => $user->id]);
         $concert->publish();
@@ -72,11 +75,15 @@ class MessageAttendeesTest extends TestCase
         $this->assertEquals($concert->id, $message->concert_id);
         $this->assertEquals('My subject', $message->subject);
         $this->assertEquals('My message', $message->message);
+        Queue::assertPushed(SendAttendeeMessage::class, function ($job) use ($message) {
+            return $job->attendeeMessage->is($message);
+        });
     }
 
     /** @test */
     function a_promoter_cannot_send_a_new_message_for_other_concerts()
     {
+        Queue::fake();
         $user = factory(User::class)->create();
         $otherUser = factory(User::class)->create();
         $concert = factory(Concert::class)->create(['user_id' => $otherUser->id]);
@@ -89,6 +96,7 @@ class MessageAttendeesTest extends TestCase
 
         $response->assertStatus(404);
         $this->assertEquals(0, AttendeeMessage::count());
+        Queue::assertNotPushed(SendAttendeeMessage::class);
     }
 
     /** @test */
@@ -136,7 +144,7 @@ class MessageAttendeesTest extends TestCase
                 'subject' => 'My subject',
                 'message' => '',
             ]);
-        
+
         $response->assertRedirect("/backstage/concerts/{$concert->id}/messages/new");
         $response->assertSessionHasErrors('message');
         $this->assertEquals(0, AttendeeMessage::count());
