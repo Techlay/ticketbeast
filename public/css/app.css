@@ -2170,6 +2170,11 @@ select.form-control {
   background-color: hsl(2, 100%, 99%);
   border-color: #d95550;
 }
+.alert-success {
+  background-color: #edf8ff;
+  border-color: #a8d9f5;
+  color: #2b729e;
+}
 .bullet-list {
   list-style-type: disc;
   padding-left: 2.5rem;
