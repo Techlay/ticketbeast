@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Billing\Charge;
 use App\Order;
 use App\Ticket;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery;
 use Tests\TestCase;
@@ -14,7 +15,7 @@ class OrderTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function creating_an_order_from_tickets_email_and_charge()
+    function creating_an_order_from_tickets_email_and_charge()
     {
         $charge = new Charge(['amount' => 3600, 'card_last_four' => '1234']);
         $tickets = collect([
@@ -32,7 +33,7 @@ class OrderTest extends TestCase
     }
 
     /** @test */
-    public function retrieving_an_order_by_confirmation_number()
+    function retrieving_an_order_by_confirmation_number()
     {
         $order = factory(Order::class)->create([
             'confirmation_number' => 'ORDERCONFIRMATION1234'
@@ -44,7 +45,14 @@ class OrderTest extends TestCase
     }
 
     /** @test */
-    public function converting_to_an_array()
+    function retrieving_a_nonexistent_order_by_confirmation_number_throws_an_exception()
+    {
+        $this->expectException(ModelNotFoundException::class);
+        Order::findByConfirmationNumber('NONEXISTENTCONFIRMATIONNUMBER');
+    }
+
+    /** @test */
+    function converting_to_an_array()
     {
         $order = factory(Order::class)->create([
             'confirmation_number' => 'ORDERCONFIRMATION1234',
