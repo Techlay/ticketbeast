@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backstage;
 
+use App\Events\ConcertAdded;
 use App\Http\Controllers\Controller;
 use App\NullFile;
 use Carbon\Carbon;
@@ -55,6 +56,8 @@ class ConcertController extends Controller
             'ticket_quantity' => (int)request('ticket_quantity'),
             'poster_image_path' => request('poster_image', new NullFile)->store('poster', 'public'),
         ]);
+
+        ConcertAdded::dispatch($concert);
 
         return redirect()->route('backstage.concerts.index');
     }
