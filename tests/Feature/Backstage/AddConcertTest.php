@@ -380,20 +380,24 @@ class AddConcertTest extends TestCase
     /** @test */
     function poster_image_is_uploaded_if_included()
     {
-        $this->withoutExceptionHandling();
+        $this->withExceptionHandling();
 
+        Event::fake(ConcertAdded::class);
         Storage::fake('public');
         $user = factory(User::class)->create();
         $file = File::image('concert-poster.png', 850, 1100);
 
-        $response = $this->actingAs($user)->post('/backstage/concerts', $this->validateParams([
+        $this->actingAs($user)->post('backstage/concerts', $this->validateParams([
             'poster_image' => $file,
         ]));
 
         tap(Concert::first(), function ($concert) use ($file) {
-            $this->assertNotNull(Concert::first()->poster_image_path);
-            Storage::disk('public')->assertExists(Concert::first()->poster_image_path);
-            $this->assertFileEquals($file->getPathname(), Storage::disk('public')->path(Concert::first()->poster_image_path));
+            $this->assertNotNull($concert->poster_image_path);
+            Storage::disk('public')->assertExists($concert->poster_image_path);
+            $this->assertFileEquals(
+                $file->getPathName(),
+                Storage::disk('public')->path($concert->poster_image_path)
+            );
         });
     }
 
