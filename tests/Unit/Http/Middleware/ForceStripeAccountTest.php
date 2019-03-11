@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class ForceStripeAccountTest extends TestCase
@@ -38,7 +39,8 @@ class ForceStripeAccountTest extends TestCase
         ]));
 
         $request = new Request;
-        $next = new class {
+        $next = new class
+        {
             public $called = false;
 
             public function __invoke($request)
@@ -53,5 +55,27 @@ class ForceStripeAccountTest extends TestCase
 
         $this->assertTrue($next->called);
         $this->assertSame($response, $request);
+    }
+
+    /** @test */
+    function middleware_is_applied_to_all_backstage_routes()
+    {
+        $routes = [
+            'backstage.concerts.index',
+            'backstage.concerts.new',
+            'backstage.concerts.store',
+            'backstage.concerts.edit',
+            'backstage.concerts.update',
+            'backstage.published-concert-orders.index',
+            'backstage.published-concerts.store',
+            'backstage.concert-messages.new',
+            'backstage.concert-messages.store',
+        ];
+
+        foreach ($routes as $route) {
+            $this->assertContains(
+                ForceStripeAccount::class,
+                Route::getRoutes()->getByName($route)->gatherMiddleware());
+        }
     }
 }
