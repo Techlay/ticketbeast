@@ -8,6 +8,7 @@ use App\Concert;
 use App\Facades\OrderConfirmationNumber;
 use App\Facades\TicketCode;
 use App\Mail\OrderConfirmationEmail;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -38,9 +39,11 @@ class PurchaseTicketsTest extends TestCase
         OrderConfirmationNumber::shouldReceive('generate')->andReturn('ORDERCONFIRMATION1234');
         TicketCode::shouldReceive('generateFor')->andReturn('TICKETCODE1', 'TICKETCODE2', 'TICKETCODE3');
 
+        $user = factory(User::class)->create(['stripe_account_id' => 'test_acct_1234']);
         $concert = factory(Concert::class)->states('published')->create([
             'ticket_price' => 3250,
             'ticket_quantity' => 3,
+            'user_id' => $user,
         ]);
         $concert->publish();
 
@@ -63,7 +66,7 @@ class PurchaseTicketsTest extends TestCase
             ]
         ]);
 
-        $this->assertEquals(9750, $this->paymentGateway->totalCharges());
+        $this->assertEquals(9750, $this->paymentGateway->totalChargesFor('test_acct_1234'));
         $this->assertTrue($concert->hasOrderFor('john@example.com'));
 
         $order = $concert->ordersFor('john@example.com')->first();
